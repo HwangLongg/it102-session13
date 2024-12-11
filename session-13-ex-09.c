@@ -1,66 +1,96 @@
 #include <stdio.h>
-int main (int n,m){
-    for (int i = 0 ; i < n; i++){
-        for (j = 0;j <m;j++){
-            scanf ("%d",&arr[i][j]);
+
+int nhapMang(int n, int m, int arr[n][m]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            scanf("%d", &arr[i][j]);
         }
     }
+    return 0;
+}
 
-}
-int main2 (int n, m){
-    for (int i = 0 ; i < n ;i++){
-        for ( int j = 0 ; j < m ;j++){
-            printf ("%d\t",arr[i][j]);
+int inMang(int n, int m, int arr[n][m]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            printf("%d\t", arr[i][j]);
         }
-        printf ("\n");
-        }
+        printf("\n");
+    }
+    return 0;
 }
-int main3 (int n , m){
-    printf ("tren trai %d ",arr[0][0]);
-        printf ("tren phai %d ",arr[0][n-1]);
-        printf ("duoi trai %d ",arr[m-1][0]);
-        printf ("duoi phai %d ",arr[m-1][n-1]);
+
+int inGoc(int n, int m, int arr[n][m]) {
+    printf("Góc trên trái: %d\n", arr[0][0]);
+    printf("Góc trên phải: %d\n", arr[0][m-1]);
+    printf("Góc dưới trái: %d\n", arr[n-1][0]);
+    printf("Góc dưới phải: %d\n", arr[n-1][m-1]);
+    return 0;
 }
-int main5 (int n,m){
-    for (i = 0 ; i<n ;i++){
-        for (j = 0;j<m;j++){
-            if (i = j){
-                printf ("duong cheo chinh %d ",arr[i][j]);
+
+int inDuongCheoChinh(int n, int m, int arr[n][m]) {
+    for (int i = 0; i < n && i < m; i++) {
+        printf("Phần tử trên đường chéo chính: %d\n", arr[i][i]);
+    }
+    return 0;
+}
+
+int isSNT(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int inSNT(int n, int m, int arr[n][m]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (isSNT(arr[i][j])) {
+                printf("%d là số nguyên tố.\n", arr[i][j]);
             }
         }
     }
-
+    return 0;
 }
-int main6 (int n , m){
-    for (i=0;i<n;i++){
-        for (j=0;j<m;j++){
-            if (arr[i][j]>0){
-                printf ("%d la so nguyen to ",arr[i][j]);
-            }
+
+int main() {
+    int n, m, a;
+    printf("Nhập số dòng (n) và số cột (m): ");
+    scanf("%d %d", &n, &m);
+
+    int arr[n][m];
+
+    do {
+        printf("\nChọn chức năng:\n");
+        printf("1. Nhập mảng\n");
+        printf("2. In mảng\n");
+        printf("3. In các góc mảng\n");
+        printf("5. In đường chéo chính\n");
+        printf("6. In các số nguyên tố trong mảng\n");
+        printf("Nhập lựa chọn (1-6): ");
+        scanf("%d", &a);
+
+        switch (a) {
+            case 1:
+                nhapMang(n, m, arr);
+                break;
+            case 2:
+                inMang(n, m, arr);
+                break;
+            case 3:
+                inGoc(n, m, arr);
+                break;
+            case 5:
+                inDuongCheoChinh(n, m, arr);
+                break;
+            case 6:
+                inSNT(n, m, arr);
+                break;
+            default:
+                printf("Chọn không hợp lệ. Chương trình sẽ kết thúc.\n");
+                break;
         }
-    }
-}do {
-    scanf ("%d",&c);
-    scanf ("%d",&d);
-    scanf ("%d",&a);
-    switch (a) {
-        case 1 :
-        main (c,d);
-        break ;
-        case 2 :
-        main2 (c,d);
-        break;
-        case 3 :
-        main3 (c,d);
-        break ;
-        case 5 :
-        main5 (c,d);
-        break;
-        case 6 :
-        main6 (c,d);
-        break ;
-        default :
-        int k =2
-        break ;
-    }
-}while(k==2);
+    } while (a >= 1 && a <= 6);
+
+    return 0;
+}
