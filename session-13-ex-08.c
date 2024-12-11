@@ -1,27 +1,26 @@
 #include <stdio.h>
-int main (){
-    int n , a ,b,c ;
-    scanf ("%d",&a);
-    scanf ("%d",&b);
-    while (1) {
-        int c =1 ;
-        a % b = c;
-        if ( a % b == 0){
-            b = n ;
-            printf ("ucln cua a va b la %d ",n);
-            return 0 ;
-        }
-        b % c = a;
-        if (b % c == 0){
-            c = n ;
-            printf ("ucln cua a va b la %d ",n);
-            return 0 ;
-        }
-        c % a = b;
-        if (c % a == 0){
-            a = n ;
-            return 0 ;
+
+int gcd(int a, int b) {
+    int min_val = (a < b) ? a : b;
+    int result = 1;
+    for (int i = 1; i <= min_val; i++) {
+        if (a % i == 0 && b % i == 0) {
+            result = i;
         }
     }
+    return result;
+}
+
+int main() {
+    int num1, num2;
+    printf("Nhập số nguyên thứ nhất: ");
+    scanf("%d", &num1);
+    printf("Nhập số nguyên thứ hai: ");
+    scanf("%d", &num2);
+
+    int result = gcd(num1, num2);
+
+    printf("Ước chung lớn nhất của %d và %d là: %d\n", num1, num2, result);
+
     return 0;
 }
